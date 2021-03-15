@@ -10,7 +10,7 @@ Overview
 Find most frequent words from website page definitions on a Spring Boot project with RESTful endpoints. 
 Receives as input a list of URLs of Web pages and returns the list of most frequent words in those pages,
 By the length of the word.
-Example, suppose the program's input is:
+For example, suppose the program's input is:
 ```
 http://he.wikipedia.org
 http://ynet.co.il
