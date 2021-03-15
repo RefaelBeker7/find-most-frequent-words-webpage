@@ -3,7 +3,13 @@ package com.refael.findmostfrequentwordswebpage.model;
 public class Word implements Comparable<Word> {
     public String word;
     public int count;
-    public int size;
+    public int length;
+
+    public Word(String word, int count, int length) {
+        this.word = word;
+        this.count = count;
+        this.length = length;
+    }
 
     @Override
     public int hashCode() { return word.hashCode(); }
@@ -16,6 +22,6 @@ public class Word implements Comparable<Word> {
 
     @Override
     public String toString() {
-        return "Length: " + size + "\t" + word + "\t number of times the word appears: " + count;
+        return "Length: " + length + "\t" + word + "\t number of times the word appears: " + count;
     }
 }
