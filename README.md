@@ -25,8 +25,6 @@ length 4: היום
 .
 .
 ```
-Running the Project with IntelliJ IDEA Ultimate Edition for development purpose.
----
 
 ### Each word element schema contains: 
 ```
@@ -59,7 +57,7 @@ By the length of the word.
 
 
 
-Installation & Run
+Running the Project with IntelliJ IDEA Ultimate Edition for development purpose.
 ---
 1. Clone the repository using the git integration of Intellij From the main menu, choose **VCS | Checkout from Version Control | Git** and then click **Clone**.
 2. IntelliJ will ask you to create an IntelliJ IDEA project from the sources you have checked out, just click **Yes**.
