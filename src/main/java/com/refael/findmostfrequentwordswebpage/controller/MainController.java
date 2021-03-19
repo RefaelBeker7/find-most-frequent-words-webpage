@@ -1,13 +1,11 @@
 package com.refael.findmostfrequentwordswebpage.controller;
 
-
 import com.refael.findmostfrequentwordswebpage.model.Word;
 import com.refael.findmostfrequentwordswebpage.service.JsoupWordCount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -40,14 +38,14 @@ public class MainController {
         }
         for (Word word : listWordsByCount) {
             if (word == null) break;
-            str.append(word.toString()).append(System.getProperty("line.separator"));
+            str.append(word.toString()).append("<br>");
         }
 
         if (str.toString().isEmpty()) {
-            LOG.info("Info: Please check website again..");
+            LOG.error("Please check website again..");
             return "Please check website again..";
         } else {
-            LOG.info("Info: " + str.toString());
+            LOG.info("Printed to UI the most frequent words from this URL " + Arrays.toString(urls));
             return str.toString();
         }
 
@@ -56,34 +54,31 @@ public class MainController {
     // GET  /he.wikipedia.org
     @RequestMapping(value = "/{url}", method = RequestMethod.GET)
     private String getListWordsCountByURL(@PathVariable("url") String url) throws IOException {
-        //https://he.wikipedia.org/
-        //https://www.ynet.co.il/home/0,7340,L-8,00.html
-        //https://www.talniri.co.il/
         StringBuilder str = new StringBuilder();
         if (jsoupWordCount.isValid("https://" + url)) {
             ArrayList<Word> listWordsCount = jsoupWordCount.getAllWordsCount("https://" + url);
             for (Word word : listWordsCount) {
                 if (word == null) break;
-                str.append(word.toString()).append(System.getProperty("line.separator"));
+                str.append(word.toString()).append("<br>");
             }
-            LOG.info("Info: " + str.toString());
+            LOG.info("Printed to UI the most frequent " + listWordsCount.size() + " words from this URL " + url);
             return str.toString();
         }
+        LOG.error("URL not valid");
         return "Please check website again..";
     }
 
     @GetMapping("/")
     private String getListWordsCount() throws IOException {
-        //http://he.wikipedia.org/
-        //https://www.ynet.co.il/home/0,7340,L-8,00.html
-        //http://www.talniri.co.il/
+        //http://he.wikipedia.org/,  https://www.ynet.co.il/home/0,7340,L-8,00.html,  http://www.talniri.co.il/
+
         StringBuilder str = new StringBuilder();
         ArrayList<Word> listWordsCount = jsoupWordCount.getAllWordsCount("http://he.wikipedia.org/");
         for (Word word : listWordsCount) {
             if (word == null) break;
-            str.append(word.toString()).append(System.getProperty("line.separator"));
+            str.append(word.toString()).append("<br>");
         }
-        LOG.info("Info: " + str.toString());
+        LOG.info("Printed to UI the most frequent" + listWordsCount.size() + " words from this URL http://he.wikipedia.org/");
         return str.toString();
     }
 

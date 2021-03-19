@@ -69,7 +69,7 @@ public class JsoupWordCount {
                 stream().
                 sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).
                 collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1, LinkedHashMap::new));
-        System.out.println(sortedMapReverse);
+        //System.out.println(sortedMapReverse);
         ArrayList<Word> sortedWords = new ArrayList<Word>(Arrays.asList(new Word[N]));
         int[] countLists = new int[N];
 
